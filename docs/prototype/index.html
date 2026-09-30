@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>探店小程序 - 三套UI方案对比</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0f0f5;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;padding:16px 0 40px}
+.scheme-title{text-align:center;font-size:20px;font-weight:700;margin:24px 0 8px;color:#1a1a1a}
+.scheme-desc{text-align:center;font-size:13px;color:#888;margin-bottom:16px}
+.phone-frame{width:375px;margin:0 auto 40px;background:#fff;border-radius:40px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.12);position:relative;border:8px solid #1a1a1a}
+.status-bar{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;font-size:12px;font-weight:600}
+.capsule{position:absolute;right:12px;top:48px;width:87px;height:32px;border-radius:16px;border:1px solid rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;font-size:11px;color:#666;background:rgba(255,255,255,.8);z-index:10}
+.capsule::before{content:"•••";letter-spacing:2px;margin-right:8px}
+.capsule::after{content:"⊙";font-size:14px}
+.nav-bar{height:44px;display:flex;align-items:center;padding:0 16px;font-size:17px;font-weight:600}
+.content{padding:0 12px 80px;min-height:500px}
+.tab-bar{position:absolute;bottom:0;left:0;right:0;height:70px;background:#fff;border-top:1px solid #eee;display:flex;align-items:flex-start;padding-top:8px;justify-content:space-around}
+.tab-item{display:flex;flex-direction:column;align-items:center;font-size:10px;color:#999;gap:2px}
+.tab-item.active{color:var(--accent)}
+.tab-icon{width:24px;height:24px;border-radius:6px;background:currentColor;opacity:.2}
+.tab-item.active .tab-icon{opacity:.6}
+
+/* === 方案A: iOS蓝色 === */
+.scheme-a{--accent:#007AFF;--bg:#F5F5F7;--card:#fff;--t1:#1A1A1A;--t2:#666;--t3:#999}
+.scheme-a .status-bar{background:#fff;color:#1a1a1a}
+.scheme-a .nav-bar{background:#fff;color:#1a1a1a}
+.scheme-a .content{background:#F5F5F7}
+.scheme-a .post-card{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px}
+.scheme-a .post-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.scheme-a .avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2)}
+.scheme-a .post-title{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:6px}
+.scheme-a .post-text{font-size:13px;color:#666;line-height:1.6;margin-bottom:10px}
+.scheme-a .post-imgs{display:flex;gap:4px;margin-bottom:10px}
+.scheme-a .post-img{width:105px;height:105px;border-radius:8px;background:linear-gradient(135deg,#f093fb,#f5576c)}
+.scheme-a .post-img:nth-child(2){background:linear-gradient(135deg,#4facfe,#00f2fe)}
+.scheme-a .post-img:nth-child(3){background:linear-gradient(135deg,#43e97b,#38f9d7)}
+.scheme-a .post-actions{display:flex;gap:20px;font-size:13px;color:#999}
+.scheme-a .tag-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:12px}
+.scheme-a .tag{padding:6px 14px;border-radius:16px;font-size:12px;background:#fff;color:#666;white-space:nowrap}
+.scheme-a .tag.active{background:#007AFF;color:#fff}
+
+/* === 方案B: 小红书风格 === */
+.scheme-b{--accent:#FF2442;--bg:#f5f5f5;--card:#fff;--t1:#222;--t2:#666;--t3:#999}
+.scheme-b .status-bar{background:#fff;color:#222}
+.scheme-b .nav-bar{background:#fff;color:#222;justify-content:center;font-size:18px}
+.scheme-b .content{background:#f5f5f5}
+.scheme-b .waterfall{display:flex;gap:8px}
+.scheme-b .waterfall-col{flex:1;display:flex;flex-direction:column;gap:8px}
+.scheme-b .wf-card{background:#fff;border-radius:12px;overflow:hidden}
+.scheme-b .wf-img{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,#ffecd2,#fcb69f)}
+.scheme-b .wf-card:nth-child(2) .wf-img{background:linear-gradient(135deg,#a1c4fd,#c2e9fb);aspect-ratio:4/5}
+.scheme-b .wf-body{padding:10px}
+.scheme-b .wf-title{font-size:13px;font-weight:600;color:#222;line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.scheme-b .wf-footer{display:flex;align-items:center;justify-content:space-between}
+.scheme-b .wf-user{display:flex;align-items:center;gap:4px;font-size:11px;color:#999}
+.scheme-b .wf-avatar{width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,#f093fb,#f5576c)}
+.scheme-b .wf-like{display:flex;align-items:center;gap:2px;font-size:11px;color:#999}
+.scheme-b .wf-like::before{content:"♡";font-size:14px}
+.scheme-b .search-bar{display:flex;align-items:center;background:#f5f5f5;border-radius:20px;padding:8px 14px;margin-bottom:12px;gap:8px;font-size:13px;color:#999}
+.scheme-b .search-bar::before{content:"🔍";font-size:14px}
+.scheme-b .tag-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:12px}
+.scheme-b .tag{padding:5px 12px;border-radius:14px;font-size:12px;background:#fff;color:#666;white-space:nowrap}
+.scheme-b .tag.active{background:#FF2442;color:#fff}
+
+/* === 方案C: 暗色高级 === */
+.scheme-c{--accent:#D4AF37;--bg:#0D0D0F;--card:#1A1A1E;--t1:#F5F5F0;--t2:#999;--t3:#666}
+.scheme-c .phone-frame{background:#0D0D0F;border-color:#333}
+.scheme-c .status-bar{background:#0D0D0F;color:#F5F5F0}
+.scheme-c .nav-bar{background:#0D0D0F;color:#F5F5F0}
+.scheme-c .capsule{border-color:rgba(255,255,255,.2);color:#999;background:rgba(255,255,255,.08)}
+.scheme-c .content{background:#0D0D0F}
+.scheme-c .post-card{background:#1A1A1E;border-radius:16px;padding:16px;margin-bottom:12px;border:1px solid rgba(212,175,55,.08)}
+.scheme-c .post-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.scheme-c .avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#D4AF37,#F5E6A3)}
+.scheme-c .post-title{font-size:15px;font-weight:600;color:#F5F5F0;margin-bottom:6px}
+.scheme-c .post-text{font-size:13px;color:#999;line-height:1.6;margin-bottom:10px}
+.scheme-c .post-imgs{display:flex;gap:4px;margin-bottom:10px}
+.scheme-c .post-img{width:105px;height:105px;border-radius:10px;background:linear-gradient(135deg,#2a1f0e,#4a3520)}
+.scheme-c .post-img:nth-child(2){background:linear-gradient(135deg,#1a2a1f,#2a4a35)}
+.scheme-c .post-img:nth-child(3){background:linear-gradient(135deg,#1f1a2a,#352a4a)}
+.scheme-c .post-actions{display:flex;gap:20px;font-size:13px;color:#666}
+.scheme-c .post-actions span:first-child{color:#D4AF37}
+.scheme-c .tag-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:12px}
+.scheme-c .tag{padding:6px 14px;border-radius:16px;font-size:12px;background:#1A1A1E;color:#999;white-space:nowrap;border:1px solid rgba(255,255,255,.06)}
+.scheme-c .tag.active{background:rgba(212,175,55,.15);color:#D4AF37;border-color:rgba(212,175,55,.3)}
+.scheme-c .tab-bar{background:#0D0D0F;border-top-color:#222}
+.scheme-c .tab-item{color:#666}
+.scheme-c .tab-item.active{color:#D4AF37}
+
+.safe-bottom{height:34px}
+</style>
+</head>
+<body>
+
+<!-- ========== 方案 A ========== -->
+<div class="scheme-title">方案 A：iOS 蓝色经典</div>
+<div class="scheme-desc">沿用现有风格，改动最小，最快上线</div>
+<div class="scheme-a">
+<div class="phone-frame">
+  <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="capsule"></div>
+  <div class="nav-bar">Community</div>
+  <div class="content">
+    <div class="tag-row">
+      <span class="tag active">全部</span><span class="tag">美食</span><span class="tag">景点</span><span class="tag">购物</span><span class="tag">住宿</span><span class="tag">小众打卡</span>
+    </div>
+    <div class="post-card">
+      <div class="post-header">
+        <div class="avatar"></div>
+        <div><div style="font-size:14px;font-weight:600;color:#1a1a1a">探店达人Peter</div><div style="font-size:11px;color:#999">2小时前 · 巴黎</div></div>
+      </div>
+      <div class="post-title">巴黎必吃的5家小众法餐！避开游客坑</div>
+      <div class="post-imgs"><div class="post-img"></div><div class="post-img"></div><div class="post-img"></div></div>
+      <div class="post-text">整理了我在巴黎住了半年私藏的法餐店，人均50€吃到撑，每一家都不踩雷！</div>
+      <div class="post-actions"><span>♡ 128</span><span>💬 36</span><span>↗ 分享</span></div>
+    </div>
+    <div class="post-card">
+      <div class="post-header">
+        <div class="avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)"></div>
+        <div><div style="font-size:14px;font-weight:600;color:#1a1a1a">东京漫游指南</div><div style="font-size:11px;color:#999">昨天 · 东京涩谷</div></div>
+      </div>
+      <div class="post-title">涩谷新晋网红打卡点，超出片！</div>
+      <div class="post-imgs"><div class="post-img" style="width:100%;height:160px;background:linear-gradient(135deg,#667eea,#764ba2)"></div></div>
+      <div class="post-text">涩谷PARCO顶楼的天台，能拍到完整的十字路口，傍晚去光线最好～</div>
+      <div class="post-actions"><span>♡ 89</span><span>💬 18</span><span>↗ 分享</span></div>
+    </div>
+  </div>
+  <div class="tab-bar">
+    <div class="tab-item"><div class="tab-icon"></div>搜索</div>
+    <div class="tab-item active"><div class="tab-icon"></div>社区</div>
+    <div class="tab-item"><div class="tab-icon"></div>抢单</div>
+    <div class="tab-item"><div class="tab-icon"></div>消息</div>
+    <div class="tab-item"><div class="tab-icon"></div>我的</div>
+  </div>
+</div>
+</div>
+
+<!-- ========== 方案 B ========== -->
+<div class="scheme-title">方案 B：小红书瀑布流</div>
+<div class="scheme-desc">双列瀑布流，社区感强，探店类用户最熟悉</div>
+<div class="scheme-b">
+<div class="phone-frame">
+  <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="capsule"></div>
+  <div class="nav-bar">探店社区</div>
+  <div class="content">
+    <div class="search-bar">搜索探店笔记...</div>
+    <div class="tag-row">
+      <span class="tag active">推荐</span><span class="tag">美食</span><span class="tag">景点</span><span class="tag">咖啡</span><span class="tag">甜品</span><span class="tag">居酒屋</span>
+    </div>
+    <div class="waterfall">
+      <div class="waterfall-col">
+        <div class="wf-card">
+          <div class="wf-img"></div>
+          <div class="wf-body">
+            <div class="wf-title">巴黎必吃的5家小众法餐！避开游客坑</div>
+            <div class="wf-footer">
+              <div class="wf-user"><div class="wf-avatar"></div>Peter</div>
+              <div class="wf-like">128</div>
+            </div>
+          </div>
+        </div>
+        <div class="wf-card">
+          <div class="wf-img" style="background:linear-gradient(135deg,#ffecd2,#fcb69f);aspect-ratio:1/1"></div>
+          <div class="wf-body">
+            <div class="wf-title">首尔弘大最好吃的部队锅</div>
+            <div class="wf-footer">
+              <div class="wf-user"><div class="wf-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)"></div>探店日记</div>
+              <div class="wf-like">67</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="waterfall-col">
+        <div class="wf-card">
+          <div class="wf-img" style="background:linear-gradient(135deg,#a1c4fd,#c2e9fb);aspect-ratio:4/5"></div>
+          <div class="wf-body">
+            <div class="wf-title">涩谷新晋网红打卡点，超出片！</div>
+            <div class="wf-footer">
+              <div class="wf-user"><div class="wf-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)"></div>漫游指南</div>
+              <div class="wf-like">89</div>
+            </div>
+          </div>
+        </div>
+        <div class="wf-card">
+          <div class="wf-img" style="background:linear-gradient(135deg,#fbc2eb,#a6c1ee);aspect-ratio:3/4"></div>
+          <div class="wf-body">
+            <div class="wf-title">伦敦Brick Lane复古咖啡店</div>
+            <div class="wf-footer">
+              <div class="wf-user"><div class="wf-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)"></div>咖啡控</div>
+              <div class="wf-like">238</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-bar">
+    <div class="tab-item"><div class="tab-icon"></div>首页</div>
+    <div class="tab-item active"><div class="tab-icon"></div>社区</div>
+    <div class="tab-item" style="position:relative"><div class="tab-icon" style="background:#FF2442;border-radius:50%;width:40px;height:40px;margin-top:-12px;opacity:.8"></div><span style="margin-top:-4px">发布</span></div>
+    <div class="tab-item"><div class="tab-icon"></div>消息</div>
+    <div class="tab-item"><div class="tab-icon"></div>我的</div>
+  </div>
+</div>
+</div>
+
+<!-- ========== 方案 C ========== -->
+<div class="scheme-title">方案 C：暗色高级感</div>
+<div class="scheme-desc">深色背景 + 金色点缀，高端探店质感</div>
+<div class="scheme-c">
+<div class="phone-frame">
+  <div class="status-bar"><span>9:41</span><span>📶 🔋</span></div>
+  <div class="capsule"></div>
+  <div class="nav-bar" style="font-size:20px;letter-spacing:1px">✦ 探店志</div>
+  <div class="content">
+    <div class="tag-row">
+      <span class="tag active">全部</span><span class="tag">美食</span><span class="tag">景点</span><span class="tag">咖啡</span><span class="tag">酒吧</span><span class="tag">小众</span>
+    </div>
+    <div class="post-card">
+      <div class="post-header">
+        <div class="avatar"></div>
+        <div><div style="font-size:14px;font-weight:600;color:#F5F5F0">探店达人Peter</div><div style="font-size:11px;color:#666">2小时前 · 巴黎</div></div>
+      </div>
+      <div class="post-title">巴黎必吃的5家小众法餐！避开游客坑</div>
+      <div class="post-imgs"><div class="post-img"></div><div class="post-img"></div><div class="post-img"></div></div>
+      <div class="post-text">整理了我在巴黎住了半年私藏的法餐店，人均50€吃到撑，每一家都不踩雷！</div>
+      <div class="post-actions"><span>★ 128</span><span>💬 36</span><span>↗ 分享</span></div>
+    </div>
+    <div class="post-card">
+      <div class="post-header">
+        <div class="avatar" style="background:linear-gradient(135deg,#8B7355,#D4AF37)"></div>
+        <div><div style="font-size:14px;font-weight:600;color:#F5F5F0">东京漫游指南</div><div style="font-size:11px;color:#666">昨天 · 东京涩谷</div></div>
+      </div>
+      <div class="post-title">涩谷新晋网红打卡点，超出片！</div>
+      <div class="post-imgs"><div class="post-img" style="width:100%;height:160px;background:linear-gradient(135deg,#1a1510,#3a2a15)"></div></div>
+      <div class="post-text">涩谷PARCO顶楼的天台，能拍到完整的十字路口，傍晚去光线最好～</div>
+      <div class="post-actions"><span>★ 89</span><span>💬 18</span><span>↗ 分享</span></div>
+    </div>
+  </div>
+  <div class="tab-bar">
+    <div class="tab-item"><div class="tab-icon"></div>发现</div>
+    <div class="tab-item active"><div class="tab-icon"></div>社区</div>
+    <div class="tab-item"><div class="tab-icon"></div>任务</div>
+    <div class="tab-item"><div class="tab-icon"></div>消息</div>
+    <div class="tab-item"><div class="tab-icon"></div>我的</div>
+  </div>
+</div>
+</div>
+
+<div style="text-align:center;padding:20px;color:#999;font-size:13px">
+  以上为 UI 方案预览 · 实际效果以微信小程序为准<br>
+  选定方案后回复 A / B / C
+</div>
+</body>
+</html>
