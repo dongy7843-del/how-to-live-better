@@ -13,7 +13,7 @@ body{background:#e8e8e8;font-family:-apple-system,"PingFang SC","Microsoft YaHei
 /* === 左侧栏 === */
 .sidebar{width:300px;background:linear-gradient(180deg,#1a1a2e 0%,#16213e 100%);color:#fff;padding:40px 28px;flex-shrink:0}
 .avatar-area{text-align:center;margin-bottom:28px}
-.avatar-circle{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#e2b04a,#f0d78c);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:36px;font-weight:700;color:#1a1a2e;letter-spacing:2px}
+.avatar-circle{width:100px;height:100px;border-radius:50%;object-fit:cover;margin:0 auto 16px;display:block;border:3px solid rgba(226,176,74,.5)}
 .sidebar-name{font-size:24px;font-weight:700;letter-spacing:3px;margin-bottom:4px}
 .sidebar-title{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:1px}
 
@@ -83,7 +83,7 @@ body{background:#e8e8e8;font-family:-apple-system,"PingFang SC","Microsoft YaHei
   <!-- 左侧栏 -->
   <div class="sidebar">
     <div class="avatar-area">
-      <div class="avatar-circle">杨</div>
+      <img class="avatar-circle" src="avatar.jpg" alt="杨润东"/>
       <div class="sidebar-name">杨润东</div>
       <div class="sidebar-title">机械设计制造及其自动化</div>
     </div>
