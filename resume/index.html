@@ -6,141 +6,200 @@
 <title>杨润东 - 个人简历</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#f5f5f5;font-family:-apple-system,"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;color:#333;line-height:1.7;-webkit-font-smoothing:antialiased}
-.page{max-width:800px;margin:24px auto;background:#fff;padding:48px 56px;box-shadow:0 1px 8px rgba(0,0,0,.06);border-radius:4px}
-@media(max-width:640px){.page{margin:0;padding:24px 20px;border-radius:0}}
+body{background:#e8e8e8;font-family:-apple-system,"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;color:#333;line-height:1.7;-webkit-font-smoothing:antialiased}
 
-/* Header */
-.header{text-align:center;padding-bottom:24px;border-bottom:2px solid #222;margin-bottom:28px}
-.name{font-size:32px;font-weight:700;letter-spacing:4px;color:#111;margin-bottom:8px}
-.contact{font-size:14px;color:#666;display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
-.contact a{color:#666;text-decoration:none}
-.contact a:hover{color:#111}
-.target{margin-top:12px;font-size:14px;color:#444;background:#f8f8f8;display:inline-block;padding:6px 20px;border-radius:4px}
+.resume{max-width:900px;margin:24px auto;display:flex;min-height:100vh;box-shadow:0 4px 24px rgba(0,0,0,.12);border-radius:6px;overflow:hidden}
 
-/* Section */
+/* === 左侧栏 === */
+.sidebar{width:300px;background:linear-gradient(180deg,#1a1a2e 0%,#16213e 100%);color:#fff;padding:40px 28px;flex-shrink:0}
+.avatar-area{text-align:center;margin-bottom:28px}
+.avatar-circle{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#e2b04a,#f0d78c);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:36px;font-weight:700;color:#1a1a2e;letter-spacing:2px}
+.sidebar-name{font-size:24px;font-weight:700;letter-spacing:3px;margin-bottom:4px}
+.sidebar-title{font-size:13px;color:rgba(255,255,255,.5);letter-spacing:1px}
+
+.sidebar-section{margin-bottom:24px}
+.sidebar-label{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#e2b04a;margin-bottom:10px;font-weight:600}
+
+.contact-item{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:13px;color:rgba(255,255,255,.8)}
+.contact-icon{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+
+.skill-tag{display:inline-block;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.8);font-size:12px;padding:4px 12px;border-radius:14px;margin:0 4px 6px 0}
+
+.skill-bar-wrap{margin-bottom:10px}
+.skill-bar-name{font-size:12px;color:rgba(255,255,255,.7);margin-bottom:4px;display:flex;justify-content:space-between}
+.skill-bar{height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+.skill-bar-fill{height:100%;background:linear-gradient(90deg,#e2b04a,#f0d78c);border-radius:2px}
+
+.edu-item{margin-bottom:12px}
+.edu-school{font-size:14px;font-weight:600;color:#fff}
+.edu-major{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.edu-time{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+
+/* === 右侧主内容 === */
+.main{flex:1;background:#fff;padding:40px 36px}
+
 .section{margin-bottom:28px}
-.section-title{font-size:16px;font-weight:700;color:#111;border-left:3px solid #222;padding-left:12px;margin-bottom:14px;letter-spacing:1px}
+.section-title{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #e2b04a;display:inline-block;letter-spacing:1px}
 
-/* Education */
-.edu-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;margin-bottom:4px}
-.edu-school{font-size:15px;font-weight:600;color:#222}
-.edu-time{font-size:13px;color:#999}
-.edu-major{font-size:14px;color:#555;margin-bottom:6px}
-.edu-courses{font-size:13px;color:#888;line-height:1.6}
+.exp-item{margin-bottom:20px;position:relative;padding-left:20px}
+.exp-item::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:#e2b04a}
+.exp-item::after{content:"";position:absolute;left:3.5px;top:20px;bottom:-12px;width:1px;background:#eee}
+.exp-item:last-child::after{display:none}
 
-/* Skills */
-.skill-list{list-style:none}
-.skill-list li{font-size:14px;color:#444;padding:4px 0;padding-left:16px;position:relative}
-.skill-list li::before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:#ccc}
-
-/* Experience */
-.exp-item{margin-bottom:18px}
-.exp-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;margin-bottom:4px}
+.exp-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;margin-bottom:2px}
 .exp-company{font-size:15px;font-weight:600;color:#222}
-.exp-time{font-size:13px;color:#999}
-.exp-role{font-size:13px;color:#888;margin-bottom:6px}
+.exp-time{font-size:12px;color:#999;background:#f5f5f5;padding:2px 8px;border-radius:4px}
+.exp-role{font-size:13px;color:#e2b04a;font-weight:500;margin-bottom:6px}
 .exp-list{list-style:none}
-.exp-list li{font-size:14px;color:#444;padding:3px 0;padding-left:16px;position:relative;line-height:1.6}
-.exp-list li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:#ddd}
+.exp-list li{font-size:13px;color:#555;padding:2px 0;line-height:1.7;position:relative;padding-left:14px}
+.exp-list li::before{content:"▸";position:absolute;left:0;color:#ccc;font-size:11px}
 
-/* Self evaluation */
-.eval-text{font-size:14px;color:#555;line-height:1.8;text-align:justify}
+.eval-text{font-size:13px;color:#555;line-height:1.9;text-align:justify}
 
-/* Footer */
-.footer{text-align:center;padding-top:20px;border-top:1px solid #eee;margin-top:8px;font-size:12px;color:#bbb}
+.courses{font-size:12px;color:#888;line-height:1.8;margin-top:8px}
+.courses span{display:inline-block;background:#f8f8f8;padding:2px 8px;border-radius:3px;margin:2px 4px 2px 0;font-size:11px;color:#666}
 
-/* Print */
+.footer{text-align:center;font-size:11px;color:#ccc;margin-top:16px;padding-top:12px;border-top:1px solid #f0f0f0}
+
+/* === 手机端适配 === */
+@media(max-width:700px){
+  body{background:#fff}
+  .resume{flex-direction:column;margin:0;border-radius:0;box-shadow:none}
+  .sidebar{width:100%;padding:28px 20px}
+  .main{padding:24px 20px}
+}
+
+/* === 打印 === */
 @media print{
   body{background:#fff}
-  .page{box-shadow:none;margin:0;padding:32px 40px;max-width:100%}
+  .resume{box-shadow:none;margin:0;max-width:100%;border-radius:0}
   .footer{display:none}
 }
 </style>
 </head>
 <body>
-<div class="page">
+<div class="resume">
 
-  <!-- 头部 -->
-  <div class="header">
-    <div class="name">杨润东</div>
-    <div class="contact">
-      <span>📱 17339076226</span>
-      <span>📧 405998303@qq.com</span>
+  <!-- 左侧栏 -->
+  <div class="sidebar">
+    <div class="avatar-area">
+      <div class="avatar-circle">杨</div>
+      <div class="sidebar-name">杨润东</div>
+      <div class="sidebar-title">机械设计制造及其自动化</div>
     </div>
-    <div class="target">求职意向：机械设计制造实习生 / 数控技术实习生 / 机械工艺实习生</div>
-  </div>
 
-  <!-- 教育背景 -->
-  <div class="section">
-    <div class="section-title">教育背景</div>
-    <div class="edu-header">
-      <span class="edu-school">洛阳理工学院</span>
-      <span class="edu-time">2023.09 — 2027.06（预计毕业）</span>
+    <div class="sidebar-section">
+      <div class="sidebar-label">联系方式</div>
+      <div class="contact-item"><div class="contact-icon">📱</div>17339076226</div>
+      <div class="contact-item"><div class="contact-icon">📧</div>405998303@qq.com</div>
+      <div class="contact-item"><div class="contact-icon">🎯</div>机械设计 / 数控技术 / 机械工艺</div>
     </div>
-    <div class="edu-major">机械设计制造及其自动化 · 本科</div>
-    <div class="edu-courses">主修课程：机械制图、机械设计基础、机械制造技术基础、机械制造工艺学、工程材料、数控加工技术、公差配合与技术测量、CAD/CAM 等</div>
-  </div>
 
-  <!-- 专业技能 -->
-  <div class="section">
-    <div class="section-title">专业技能</div>
-    <ul class="skill-list">
-      <li>具备机械制图基础，能识读常见机械零件图，了解尺寸、公差及表面粗糙度的标注方式</li>
-      <li>能使用 AutoCAD 绘制简单二维零件图，能用 SolidWorks 完成基础三维建模</li>
-      <li>在数控实训中操作过数控车床、数控铣床，了解数控加工基本流程</li>
-      <li>能读懂简单数控程序，了解 G 代码、M 代码的基本含义</li>
-      <li>熟练使用 Word、Excel、PowerPoint 等办公软件</li>
-    </ul>
-  </div>
-
-  <!-- 实践经历 -->
-  <div class="section">
-    <div class="section-title">实践经历</div>
-
-    <div class="exp-item">
-      <div class="exp-header">
-        <span class="exp-company">昌硕科技（上海）有限公司</span>
-        <span class="exp-time">2024.01 — 2024.02</span>
+    <div class="sidebar-section">
+      <div class="sidebar-label">教育背景</div>
+      <div class="edu-item">
+        <div class="edu-school">洛阳理工学院</div>
+        <div class="edu-major">机械设计制造及其自动化 · 本科</div>
+        <div class="edu-time">2023.09 — 2027.06（预计毕业）</div>
       </div>
-      <div class="exp-role">产线测试岗（寒假工）</div>
-      <ul class="exp-list">
-        <li>在苹果手机组装产线从事成品功能测试，按作业规范逐台检测并判定结果</li>
-        <li>熟悉产线节拍作业与不良品判定流程，了解车间标准化作业（SOP）要求</li>
-        <li>遵守车间安全操作及静电防护规范，适应流水线连续作业节奏</li>
-      </ul>
     </div>
 
-    <div class="exp-item">
-      <div class="exp-header">
-        <span class="exp-company">金工实习</span>
+    <div class="sidebar-section">
+      <div class="sidebar-label">专业技能</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-name"><span>AutoCAD</span><span>████░</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
       </div>
-      <ul class="exp-list">
-        <li>参与车削、铣削等基础加工实训，了解机械加工流程及安全操作规范</li>
-        <li>学习常用量具的使用方法，了解零件尺寸检测的基本流程</li>
-        <li>熟悉机械加工的基本工艺过程，对机械制造有初步认识</li>
-      </ul>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-name"><span>SolidWorks</span><span>███░░</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-name"><span>数控加工</span><span>███░░</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:55%"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-name"><span>机械制图</span><span>████░</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-name"><span>Office 办公</span><span>█████</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div>
+      </div>
     </div>
 
-    <div class="exp-item">
-      <div class="exp-header">
-        <span class="exp-company">数控加工实训</span>
-      </div>
-      <ul class="exp-list">
-        <li>学习数控加工基础知识，了解数控机床的基本组成及工作原理</li>
-        <li>了解数控加工工艺流程、刀具选择及加工步骤</li>
-      </ul>
+    <div class="sidebar-section">
+      <div class="sidebar-label">核心能力</div>
+      <span class="skill-tag">机械制图</span>
+      <span class="skill-tag">零件图识读</span>
+      <span class="skill-tag">公差标注</span>
+      <span class="skill-tag">数控车床</span>
+      <span class="skill-tag">数控铣床</span>
+      <span class="skill-tag">G/M代码</span>
+      <span class="skill-tag">产线测试</span>
+      <span class="skill-tag">SOP作业</span>
+      <span class="skill-tag">量具使用</span>
     </div>
   </div>
 
-  <!-- 自我评价 -->
-  <div class="section">
-    <div class="section-title">自我评价</div>
-    <p class="eval-text">机械设计制造及其自动化专业本科在读，2027 年 6 月毕业，求职方向为机械设计制造与数控技术相关实习岗位。专业基础课涵盖机械制图、机械制造技术基础、机械制造工艺学、数控加工技术等，能识读机械零件图，掌握 AutoCAD、SolidWorks 基础操作。在校完成车削、铣削及数控加工实训，并利用寒假进入制造企业产线实践，了解真实生产现场的作业规范与节拍要求。实践经验仍在积累，但愿意从一线岗位做起，把课堂知识补成实际动手能力。</p>
-  </div>
+  <!-- 右侧主内容 -->
+  <div class="main">
 
-  <div class="footer">
-    resume.9666996.xyz · 最后更新：2026年10月
+    <div class="section">
+      <div class="section-title">实践经历</div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-company">昌硕科技（上海）有限公司</span>
+          <span class="exp-time">2024.01 — 2024.02</span>
+        </div>
+        <div class="exp-role">产线测试岗</div>
+        <ul class="exp-list">
+          <li>在苹果手机组装产线从事成品功能测试，按作业规范逐台检测并判定结果</li>
+          <li>熟悉产线节拍作业与不良品判定流程，了解车间标准化作业（SOP）要求</li>
+          <li>遵守车间安全操作及静电防护规范，适应流水线连续作业节奏</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-company">金工实习</span>
+          <span class="exp-time">在校期间</span>
+        </div>
+        <div class="exp-role">车削 / 铣削实训</div>
+        <ul class="exp-list">
+          <li>参与车削、铣削等基础加工实训，了解机械加工流程及安全操作规范</li>
+          <li>学习常用量具的使用方法，了解零件尺寸检测的基本流程</li>
+          <li>熟悉机械加工的基本工艺过程，对机械制造有初步认识</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-company">数控加工实训</span>
+          <span class="exp-time">在校期间</span>
+        </div>
+        <div class="exp-role">数控机床操作</div>
+        <ul class="exp-list">
+          <li>学习数控加工基础知识，了解数控机床的基本组成及工作原理</li>
+          <li>了解数控加工工艺流程、刀具选择及加工步骤</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">主修课程</div>
+      <div class="courses">
+        <span>机械制图</span><span>机械设计基础</span><span>机械制造技术基础</span><span>机械制造工艺学</span><span>工程材料</span><span>数控加工技术</span><span>公差配合与技术测量</span><span>CAD/CAM</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">自我评价</div>
+      <p class="eval-text">机械设计制造及其自动化专业本科在读，2027 年 6 月毕业。能识读机械零件图，掌握 AutoCAD、SolidWorks 基础操作。在校完成车削、铣削及数控加工实训，并利用寒假进入制造企业产线实践，了解真实生产现场的作业规范与节拍要求。愿意从一线岗位做起，把课堂知识转化为实际动手能力。</p>
+    </div>
+
+    <div class="footer">resume.9666996.xyz · 最后更新：2026年10月</div>
   </div>
 
 </div>
